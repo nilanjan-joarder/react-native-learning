@@ -1,9 +1,10 @@
-import { Button, View } from 'react-native';
-
+import { Button, View, Text } from 'react-native';
+import { useState } from 'react';
 export default function HomeScreen() {
-function sayHello() {
-  console.log("Button Pressed");
-}
+  const [likes, setLikes] = useState(0);
+  function sayHello() {
+    console.log("Button Pressed");
+  }
 
   return (
     <View
@@ -12,8 +13,13 @@ function sayHello() {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <Button  title="Like"  onPress={sayHello}
-/>
+      <Button
+        title="Like"
+        onPress={() => {
+          setLikes(likes + 1);
+        }}
+      />
+      <Text style={{ color: 'white', fontSize: 20 }}>Likes: {likes}</Text>
     </View>
   );
 }
