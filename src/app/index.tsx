@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native';
-
+import UserCard from '../components/UserCards';
 export default function HomeScreen() {
   const users = [
     {
@@ -15,24 +15,20 @@ export default function HomeScreen() {
       role: "Product Manager"
     }
   ];
-
   return (
     <View
       style={{
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#282c34',
       }}>
       {users.map((user, index) => (
-        <View key={index}>
-          <Text style={{ color: 'white' }}>
-            {user.name}
-          </Text>
-
-          <Text style={{ color: 'white' }}>
-            {user.role}
-          </Text>
-        </View>
+        <UserCard
+          key={index}
+          name={user.name}
+          role={user.role}
+        />
       ))}
     </View>
   );
