@@ -1,48 +1,69 @@
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Button, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useState } from 'react';
+
 type UserCardProps = {
   name: string;
   role: string;
 };
+
 const styles = StyleSheet.create({
- selectedCard: {
-  borderColor: 'green',
-  backgroundColor: 'green',
-},
   card: {
-    alignItems: 'center',
-    marginBottom: 20,
     padding: 20,
     borderWidth: 1,
     borderColor: 'white',
     borderRadius: 12,
-    backgroundColor: 'red',
+    marginBottom: 20,
   },
-  name: {
-    color: 'white',
-    fontSize: 14,
+
+  selected: {
+    borderColor: 'green',
   },
-  role: {
+
+  large: {
+    padding: 40,
+  },
+
+  disabled: {
+    opacity: 0.3,
+  },
+
+  text: {
     color: 'white',
-    fontSize: 16,
   },
 });
-export default function UserCard({ name, role, }: UserCardProps) {
-  const [clicks, setClicks] = useState(0);
-  const [selected, setSelected] = useState(false);
-  return (
 
-    <Pressable style={[styles.card, selected && styles.selectedCard,]} onPress={() => {
-      setClicks(clicks + 1);
-      setSelected(!selected);
-    }}>
-      <Text style={styles.name}>{name}</Text>
-      <Text style={styles.role}>{role}</Text>
-      <Text style={styles.role}>
-        Clicks: {clicks} </Text>
-      <Text style={styles.role}>
-        {selected ? 'Selected' : 'Not Selected'}
-      </Text>
-    </Pressable >
+export default function UserCard({ name, role }: UserCardProps) {
+  const [selected, setSelected] = useState(false);
+  const [large, setLarge] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+
+  return (
+    <View>
+      <Pressable
+        style={[
+          styles.card,
+          selected && styles.selected,
+          large && styles.large,
+          disabled && styles.disabled,
+        ]}>
+        <Text style={styles.text}>{name}</Text>
+        <Text style={styles.text}>{role}</Text>
+      </Pressable>
+
+      <Button
+        title="Toggle Selected"
+        onPress={() => setSelected(!selected)}
+      />
+
+      <Button
+        title="Toggle Large"
+        onPress={() => setLarge(!large)}
+      />
+
+      <Button
+        title="Toggle Disabled"
+        onPress={() => setDisabled(!disabled)}
+      />
+    </View>
   );
 }
