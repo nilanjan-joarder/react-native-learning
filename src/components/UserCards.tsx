@@ -5,14 +5,19 @@ type UserCardProps = {
   role: string;
 };
 const styles = StyleSheet.create({
-  card: {
-  alignItems: 'center',
-  marginBottom: 20,
-  padding: 20,
-  borderWidth: 1,
-  borderColor: 'white',
-  borderRadius: 12,
+ selectedCard: {
+  borderColor: 'green',
+  backgroundColor: 'green',
 },
+  card: {
+    alignItems: 'center',
+    marginBottom: 20,
+    padding: 20,
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 12,
+    backgroundColor: 'red',
+  },
   name: {
     color: 'white',
     fontSize: 14,
@@ -26,7 +31,8 @@ export default function UserCard({ name, role, }: UserCardProps) {
   const [clicks, setClicks] = useState(0);
   const [selected, setSelected] = useState(false);
   return (
-    <Pressable style={styles.card} onPress={() => {
+
+    <Pressable style={[styles.card, selected && styles.selectedCard,]} onPress={() => {
       setClicks(clicks + 1);
       setSelected(!selected);
     }}>
