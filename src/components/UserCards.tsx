@@ -4,6 +4,7 @@ import { useState } from 'react';
 type UserCardProps = {
   name: string;
   role: string;
+  onSelect: () => void;
 };
 
 const styles = StyleSheet.create({
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function UserCard({ name, role }: UserCardProps) {
+export default function UserCard({ name, role, onSelect }: UserCardProps) {
   const [selected, setSelected] = useState(false);
   const [large, setLarge] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -45,15 +46,14 @@ export default function UserCard({ name, role }: UserCardProps) {
           selected && styles.selected,
           large && styles.large,
           disabled && styles.disabled,
-        ]}>
+        ]}
+        onPress={() => {
+          setSelected(!selected);
+          onSelect();
+        }}>
         <Text style={styles.text}>{name}</Text>
         <Text style={styles.text}>{role}</Text>
       </Pressable>
-
-      <Button
-        title="Toggle Selected"
-        onPress={() => setSelected(!selected)}
-      />
 
       <Button
         title="Toggle Large"
