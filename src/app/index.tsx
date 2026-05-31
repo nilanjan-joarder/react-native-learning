@@ -1,43 +1,62 @@
-import { Text, View } from 'react-native';
-import { useState } from 'react';
-import UserCard from '../components/UserCards';
+import { ScrollView, View } from 'react-native';
+import ProfileCard from '../components/ProfileCard';
+
 export default function HomeScreen() {
-  const [selectedUser, setSelectedUser] = useState('');
-  const users = [
+  const profiles = [
     {
-      name: "Rahul",
-      role: "Engineer"
+      name: 'Rahul',
+      age: 28,
+      city: 'Kolkata',
+      profession: 'Product Designer',
+      bio: 'Loves travel and photography',
+      interests: ['Fitness', 'Travel', 'Music'],
+      image: 'https://picsum.photos/200?1',
     },
     {
-      name: "Priya",
-      role: "Designer"
+      name: 'Priya',
+      age: 25,
+      city: 'Bangalore',
+      profession: 'UX Researcher',
+      bio: 'Coffee enthusiast and book lover',
+      interests: ['Coffee', 'Books'],
+      image: 'https://picsum.photos/200?2',
     },
     {
-      name: "Arjun",
-      role: "Product Manager"
-    }
+      name: 'Arjun',
+      age: 30,
+      city: 'Mumbai',
+      profession: 'Product Manager',
+      bio: 'Fitness and startups',
+      interests: ['Fitness', 'Startups', 'Running'],
+      image: 'https://picsum.photos/200?3',
+    },
   ];
+
   return (
-    <View
+    <ScrollView
       style={{
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#282c34',
+        paddingTop: 40,
       }}>
-      <Text style={{ color: 'white', fontSize: 20 }}>
-        Selected: {selectedUser}
-      </Text>
-      {users.map((user, index) => (
-        <UserCard
-          key={index}
-          name={user.name}
-          role={user.role}
-          selected={selectedUser === user.name}
-          onSelect={() => setSelectedUser(user.name)}
-        />
-      ))}
-
-    </View>
+      <View
+        style={{
+          alignItems: 'center',
+          paddingVertical: 20,
+        }}>
+        {profiles.map((profile, index) => (
+          <ProfileCard
+            key={index}
+            name={profile.name}
+            age={profile.age}
+            city={profile.city}
+            profession={profile.profession}
+            bio={profile.bio}
+            interests={profile.interests}
+            image={profile.image}
+          />
+        ))}
+      </View>
+    </ScrollView>
   );
 }
