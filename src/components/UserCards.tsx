@@ -5,6 +5,7 @@ type UserCardProps = {
   name: string;
   role: string;
   onSelect: () => void;
+  selected: boolean;
 };
 
 const styles = StyleSheet.create({
@@ -33,8 +34,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function UserCard({ name, role, onSelect }: UserCardProps) {
-  const [selected, setSelected] = useState(false);
+export default function UserCard({ name, role, onSelect, selected, }: UserCardProps) {
   const [large, setLarge] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
@@ -48,7 +48,6 @@ export default function UserCard({ name, role, onSelect }: UserCardProps) {
           disabled && styles.disabled,
         ]}
         onPress={() => {
-          setSelected(!selected);
           onSelect();
         }}>
         <Text style={styles.text}>{name}</Text>

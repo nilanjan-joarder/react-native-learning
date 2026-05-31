@@ -33,6 +33,7 @@ export default function HomeScreen() {
           key={index}
           name={user.name}
           role={user.role}
+          selected={selectedUser === user.name}
           onSelect={() => setSelectedUser(user.name)}
         />
       ))}
