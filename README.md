@@ -1,6 +1,6 @@
 # React Native Learning Repository
 
-A personal repository for learning and experimenting with React Native, React fundamentals, TypeScript, and modern mobile application development.
+A personal repository for learning and experimenting with React Native, React fundamentals, TypeScript, and modern mobile application development
 
 ## Purpose
 
